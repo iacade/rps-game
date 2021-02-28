@@ -1,0 +1,211 @@
+.pentagon {
+    position: relative;
+}
+
+.pentagon__item {
+    position: absolute;
+    width: 135px;
+    height: 135px;
+    border: none;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: hsl(229, 25%, 31%);
+    transition: 100ms;
+    box-shadow: inset 0 -3px 0 2px rgba(0, 0, 0, .3);
+}
+
+.pentagon__item[value=scissors] {
+    top: -60px;
+    left: calc(50% - 65px);
+    background: hsl(40, 84%, 53%);
+}
+
+.pentagon__item[value=paper] {
+    top: 50px;
+    left: calc(50% + 85px);
+    background: hsl(230, 89%, 65%);
+}
+
+.pentagon__item[value=rock] {
+    top: calc(100% - 80px);
+    left: calc(50% + 25px);
+    background: hsl(349, 70%, 56%);
+}
+
+.pentagon__item[value=lizard] {
+    top: calc(100% - 80px);
+    left: 0;
+    background: hsl(261, 72%, 63%);
+}
+
+.pentagon__item[value=spock] {
+    top: 50px;
+    left: -55px;
+    background: hsl(189, 58%, 57%);
+}
+
+.pentagon__item:focus {
+    outline: none;
+}
+
+.pentagon__item[value=scissors]:focus {
+    box-shadow: 0 0 15px var(--c-orange);
+    color: var(--c-orange);
+}
+
+.pentagon__item[value=paper]:focus {
+    box-shadow: 0 0 15px var(--c-blue);
+    color: var(--c-blue);
+}
+
+.pentagon__item[value=rock]:focus {
+    box-shadow: 0 0 15px var(--c-red);
+    color: var(--c-red);
+}
+
+.pentagon__item[value=lizard]:focus {
+    box-shadow: 0 0 15px var(--c-purple);
+    color: var(--c-purple);
+}
+
+.pentagon__item[value=spock]:focus {
+    box-shadow: 0 0 15px var(--c-cyan);
+    color: var(--c-cyan);
+}
+
+.pentagon__item[value=scissors]:hover:not(:disabled) {
+    color: var(--c-orange);
+}
+
+.pentagon__item[value=paper]:hover:not(:disabled) {
+    color: var(--c-blue);
+}
+
+.pentagon__item[value=rock]:hover:not(:disabled) {
+    color: var(--c-red);
+}
+
+.pentagon__item[value=lizard]:hover:not(:disabled) {
+    color: var(--c-purple);
+}
+
+.pentagon__item[value=spock]:hover:not(:disabled) {
+    color: var(--c-cyan);
+}
+
+.pentagon__item-icon {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: hsl(0, 0%, 89%);
+    box-shadow: inset 0 3px 0 2px rgba(97, 97, 97, .2);
+    transition: 100ms;
+}
+
+.pentagon.fade-out {
+    position: absolute;
+    animation: pentagon-fade-out 400ms ease forwards;
+}
+
+.pentagon.fade-in {
+    animation: pentagon-fade-in 400ms ease forwards;
+}
+
+.pentagon__item.fade-in {
+    animation: pentagon-item-fade-in 400ms ease forwards;
+}
+
+/* it would be more pleasant for eye if sass was used */
+.pentagon__item-mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: pentagon-item-mask 400ms 300ms ease forwards;
+    background: radial-gradient(circle at center,
+        hsla(39, 89%, 49%, 10%), hsla(39, 89%, 49%, 10%) 20%,
+        hsla(39, 89%, 49%, 8%) 20%, hsla(39, 89%, 49%, 8%) 40%,
+        hsla(39, 89%, 49%, 6%) 40%, hsla(39, 89%, 49%, 6%) 60%,
+        hsla(39, 89%, 49%, 3%) 60%, hsla(39, 89%, 49%, 3%) 80%,
+        hsla(39, 89%, 49%, 1%) 80%, hsla(39, 89%, 49%, 1%) 100%);
+}
+
+.pentagon__item-mask[data-value=paper] {
+    background: radial-gradient(circle at center,
+        hsla(230, 89%, 65%, 10%), hsla(230, 89%, 65%, 10%) 20%,
+        hsla(230, 89%, 65%, 8%) 20%, hsla(230, 89%, 65%, 8%) 40%,
+        hsla(230, 89%, 65%, 6%) 40%, hsla(230, 89%, 65%, 6%) 60%,
+        hsla(230, 89%, 65%, 3%) 60%, hsla(230, 89%, 65%, 3%) 80%,
+        hsla(230, 89%, 65%, 1%) 80%, hsla(230, 89%, 65%, 1%) 100%);
+}
+
+.pentagon__item-mask[data-value=rock] {
+    background: radial-gradient(circle at center,
+        hsla(349, 70%, 56%, 10%), hsla(349, 70%, 56%, 10%) 20%,
+        hsla(349, 70%, 56%, 8%) 20%, hsla(349, 70%, 56%, 8%) 40%,
+        hsla(349, 70%, 56%, 6%) 40%, hsla(349, 70%, 56%, 6%) 60%,
+        hsla(349, 70%, 56%, 3%) 60%, hsla(349, 70%, 56%, 3%) 80%,
+        hsla(349, 70%, 56%, 1%) 80%, hsla(349, 70%, 56%, 1%) 100%);
+}
+
+.pentagon__item-mask[data-value=lizard] {
+    background: radial-gradient(circle at center,
+        hsla(261, 72%, 63%, 10%), hsla(261, 72%, 63%, 10%) 20%,
+        hsla(261, 72%, 63%, 8%) 20%, hsla(261, 72%, 63%, 8%) 40%,
+        hsla(261, 72%, 63%, 6%) 40%, hsla(261, 72%, 63%, 6%) 60%,
+        hsla(261, 72%, 63%, 3%) 60%, hsla(261, 72%, 63%, 3%) 80%,
+        hsla(261, 72%, 63%, 1%) 80%, hsla(261, 72%, 63%, 1%) 100%);
+}
+
+.pentagon__item-mask[data-value=spock] {
+    background: radial-gradient(circle at center,
+        hsla(189, 58%, 57%, 10%), hsla(189, 58%, 57%, 10%) 20%,
+        hsla(189, 58%, 57%, 8%) 20%, hsla(189, 58%, 57%, 8%) 40%,
+        hsla(189, 58%, 57%, 6%) 40%, hsla(189, 58%, 57%, 6%) 60%,
+        hsla(189, 58%, 57%, 3%) 60%, hsla(189, 58%, 57%, 3%) 80%,
+        hsla(189, 58%, 57%, 1%) 80%, hsla(189, 58%, 57%, 1%) 100%);
+}
+
+@keyframes pentagon-item-mask {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(3);
+    }
+}
+
+@keyframes pentagon-item-fade-in {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(2.2);
+        opacity: 1;
+    }
+}
+
+@keyframes pentagon-fade-out {
+    to {
+        transform: scale(.85);
+        opacity: 0;
+        display: none;
+    }
+}
+
+@keyframes pentagon-fade-in {
+    from {
+        transform: scale(.85);
+        opacity: 0;
+    }
+}

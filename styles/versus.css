@@ -1,0 +1,81 @@
+.versus {
+    width: 100%;
+}
+
+.versus.hidden {
+    display: none;
+}
+
+.versus__result {
+    text-align: center;
+    min-width: 340px;
+    transform: scaleX(0);
+    opacity: 0;
+    transition: 400ms;
+}
+
+.versus__result-container {
+    margin: 0 30px;
+    transition: 400ms;
+    max-width: 0;
+    overflow: hidden;
+    padding-bottom: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.versus.has-result .versus__result-container {
+    max-width: 340px;
+}
+
+.versus.has-result .versus__result {
+    transform: none;
+    opacity: 1;
+}
+
+.versus__result h1 {
+    margin-bottom: 20px;
+    color: #fafafa;
+}
+
+.versus__result button {
+    padding: 15px 65px;
+}
+
+.versus__item-label {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 2;
+}
+
+.versus__item-picker {
+    width: 297px;
+    height: 297px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.versus__item-picker::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 15, .16);
+}
+
+.loader-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

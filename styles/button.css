@@ -1,0 +1,86 @@
+.btn {
+    padding: 15px 40px;
+    border: 2px solid hsl(0, 0%, 87%);
+    border-radius: 10px;
+    background: transparent;
+    transition: 100ms;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, .2);
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 15px 2px rgba(255, 255, 255, .5);
+    background: rgba(255, 255, 255, .2);
+}
+
+.btn.accent {
+    color: hsl(229, 25%, 31%);
+    background-color: #fafafa;
+    border-color: #fafafa;
+}
+
+.btn.accent:hover {
+    background: transparent;
+    color: #fafafa;
+}
+
+.round-btn {
+    background: inherit;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+    transition: 100ms;
+}
+
+.round-btn__mask {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    z-index: 1;
+    border: 1px solid transparent;
+    transform: scale(1.8);
+    opacity: 0;
+    transition: 100ms;
+}
+
+.round-btn__content {
+    position: relative;
+    z-index: 2;
+    transition: 100ms;
+}
+
+.round-btn:hover .round-btn__mask,
+.round-btn:focus .round-btn__mask {
+    transform: scale(2.2);
+    opacity: 1;
+}
+
+.round-btn:focus {
+    outline: none;
+}
+
+.close-btn {
+    color: #c0c0c0;
+}
+
+.close-btn .round-btn__mask {
+    background-color: #f0e5e5;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--c-red);
+}
+
+.close-btn:focus .round-btn__mask {
+    border-color: #f0baba;
+}
