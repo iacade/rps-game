@@ -206,6 +206,10 @@ button {
         font-size: 16px;
     }
 
+    .game__field {
+        padding: 40px 0;
+    }
+
     .game__rules-btn {
         justify-content: center;
     }

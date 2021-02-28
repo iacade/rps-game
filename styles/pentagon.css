@@ -1,5 +1,6 @@
 .pentagon {
     position: relative;
+    margin-top: 20px;
 }
 
 .pentagon__item {
