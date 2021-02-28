@@ -136,6 +136,18 @@ button {
     color: hsl(229, 25%, 31%);
 }
 
+.mb-10 {
+    margin-bottom: 50px;
+}
+
+.mt-10 {
+    margin-top: 50px;
+}
+
+.mt-4 {
+    margin-top: 20px;
+}
+
 /* ----------------------------------- */
 
 .score-val {
