@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="styles/modal.css">
   <link rel="stylesheet" href="styles/pentagon.css">
   <link rel="stylesheet" href="styles/versus.css">
+  <link rel="stylesheet" href="styles/media.css">
   <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
@@ -39,14 +40,8 @@
   <main id="app" class="app">
     <div class="app__content game">
       <div class="game__container uppercase">
-        <button class="game__rules-btn btn wide-spacing"
-          data-toggle-modal
-          data-modal-title="Rules | Rock, Paper, Scissors, Lizard, Spock">
-          rules
-        </button>
-
-        <div class="game__panel flex align-between">
-          <img src="images/logo-bonus.svg" alt="rock, paper, scissors, lizard, spock">
+        <div class="game__panel flex align-between valign-center">
+          <img src="images/logo-bonus.svg" class="game__logo" alt="rock, paper, scissors, lizard, spock">
           <div class="game__score">
             <div class="color-blue wide-spacing">score</div>
             <div>
@@ -57,7 +52,7 @@
 
         <div class="game__field">
           <div class="pentagon">
-            <img src="images/bg-pentagon.svg" alt="pentagon">
+            <img class="pentagon__image" src="images/bg-pentagon.svg" alt="pentagon">
             <button class="pentagon__item" type="button" value="scissors">
               <div class="pentagon__item-icon">
                 <svg width="51" height="58">
@@ -67,7 +62,7 @@
             </button>
             <button class="pentagon__item" type="button" value="paper">
               <div class="pentagon__item-icon">
-                <svg style="transform: translateX(-3px)" width="49" height="59">
+                <svg width="49" height="59">
                   <use href="#paper-icon">
                 </svg>
               </div>
@@ -88,44 +83,70 @@
             </button>
             <button class="pentagon__item" type="button" value="spock" data-loop-focus="[value=scissors]">
               <div class="pentagon__item-icon">
-                <svg style="transform: translateX(3px)" width="45" height="59">
+                <svg width="45" height="59">
                   <use href="#spock-icon">
                 </svg>
               </div>
             </button>
           </div>
 
-          <div class="versus flex align-between valign-center hidden uppercase">
-            <div class="versus__item">
-              <div class="versus__item-label wide-spacing fw-bold">you picked</div>
-              <div class="versus__item-picker">
+          <div class="versus hidden uppercase">
+            <div class="flex align-between valign-center">
+              <div class="versus__item">
+                <div class="versus__item-label wide-spacing fw-bold">you picked</div>
+                <div class="versus__item-picker">
+                </div>
               </div>
-            </div>
-            <div class="versus__result-container">
-              <div class="versus__result">
-                <h1 class="fs-large">YOU LOSE</h1>
-                <button type="button" data-restart class="btn accent wide-spacing">PLAY AGAIN</button>
+              <div class="versus__result-container hide-mobile">
+                <div class="versus__result">
+                  <h1 data-result-text class="fs-large">YOU LOSE</h1>
+                  <button type="button" data-restart class="btn accent wide-spacing">PLAY AGAIN</button>
+                </div>
               </div>
-            </div>
-            <div class="versus__item">
-              <div class="versus__item-label wide-spacing fw-bold">the house picked</div>
-              <div class="versus__item-picker">
-                <div class="loader-container">
-                  <div class="loader">
-                    <div></div>
-                    <div></div>
+              <div class="versus__item">
+                <div class="versus__item-label wide-spacing fw-bold">the house picked</div>
+                <div class="versus__item-picker">
+                  <div class="loader-container">
+                    <div class="loader">
+                      <div></div>
+                      <div></div>
+                    </div>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div class="versus__result-container block-mobile">
+              <div class="versus__result versus__result-mobile">
+                <h1 data-result-text class="fs-large">YOU LOSE</h1>
+                <button type="button" data-restart class="btn accent wide-spacing">PLAY AGAIN</button>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="game__rules-btn">
+        <button class="btn uppercase wide-spacing"
+          data-toggle-modal
+          data-modal-title="Rules | Rock, Paper, Scissors, Lizard, Spock">
+          rules
+        </button>
+      </div>
     </div>
     <div class="app__modal modal">
       <article class="modal__content rules uppercase">
-        <div class="flex align-between">
+        <div class="flex modal-title">
           <h2 class="color-dark">rules</h2>
+          <button type="button" tabindex="0" class="round-btn close-btn hide-mobile" data-toggle-modal>
+            <div class="round-btn__mask"></div>
+            <svg class="round-btn__content" width="20" height="20">
+              <use href="#close-icon">
+            </svg>
+          </button>
+        </div>
+        <figure class="rules__img flex align-center">
+          <img src="images/image-rules-bonus.svg" alt="rules">
+        </figure>
+        <div class="flex-mobile align-center">
           <button type="button" tabindex="0" class="round-btn close-btn" data-toggle-modal>
             <div class="round-btn__mask"></div>
             <svg class="round-btn__content" width="20" height="20">
@@ -133,9 +154,6 @@
             </svg>
           </button>
         </div>
-        <figure class="rules__img">
-          <img src="images/image-rules-bonus.svg" alt="rules">
-        </figure>
       </article>
     </div>
   </main>

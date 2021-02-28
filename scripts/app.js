@@ -28,7 +28,6 @@
         APP_STEPS.GAME_FINISH
     ];
     const container = document.querySelector(".game__container");
-    const field = document.querySelector(".game__field");
     const pentagon = document.querySelector(".pentagon");
     const versus = document.querySelector(".versus");
     const [ versusUser, versusHouse ] = versus.querySelectorAll(".versus__item");
@@ -40,6 +39,10 @@
                 resolve(element);
             };
         });
+    }
+
+    function animations(...elements) {
+        return Promise.all(elements.map(element => animation(element)));
     }
 
     function transition(element) {
@@ -129,11 +132,23 @@
             return;
         }
 
-        pentagon.classList.add("fade-in");
-        versus.classList.add("hidden");
-        versus.parentNode.appendChild(pentagon);
+        const { left, top, width } = versus.getBoundingClientRect();
 
-        animation(pentagon).then(() => {
+        pentagon.classList.add("fade-in");
+        versus.parentNode.appendChild(pentagon);
+        versus.style.position = "absolute";
+        versus.style.left = left + "px";
+        versus.style.top = top + "px";
+        versus.style.width = width + "px";
+        versus.classList.add("fade-out");
+
+        animations(pentagon, versus).then(() => {
+            versus.style.position = "relative";
+            versus.style.left = 0;
+            versus.style.top = 0;
+            versus.style.width = "auto";
+            versus.classList.remove("fade-out");
+            versus.classList.add("hidden");
             versus.querySelectorAll(".pentagon__item-mask, .versus__item-picker .pentagon__item")
                 .forEach(node => node.parentNode.removeChild(node));
             versus.querySelector(".loader")
@@ -166,8 +181,8 @@
                 .getBoundingClientRect();
             clone.style.left = left + "px";
             clone.style.top = top + "px";
-            clone.style.transform = "scale(2.2)";
             clone.style.transformOrigin = "top left";
+            clone.classList.add("clone");
 
             return transition(clone);
         })
@@ -220,7 +235,8 @@
                 winnerButton.prepend(mask);
             }
 
-            versus.querySelector("h1").textContent = resultText;
+            versus.querySelectorAll("[data-result-text]")
+                .forEach(item => item.textContent = resultText);
             versus.classList.add("has-result");
             updateScore(winner * -1);
         });

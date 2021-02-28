@@ -12,6 +12,12 @@
     --c-cyan: hsl(189, 58%, 57%);
 }
 
+html {
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow-x: hidden;
+}
+
 body {
     font-family: "Barlow Semi Condensed", sans-serif;
     font-weight: 600;
@@ -42,6 +48,10 @@ button {
     justify-content: space-between;
 }
 
+.align-center {
+    justify-content: center;
+}
+
 .valign-center {
     align-items: center;
 }
@@ -63,11 +73,12 @@ button {
 .app__content {
     min-width: 100vw;
     min-height: 100vh;
-    max-width: 100vw;
-    max-height: 100vh;
     overflow: hidden;
     background: radial-gradient(ellipse at top, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
-    padding: 40px 0;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .game__panel {
@@ -90,13 +101,13 @@ button {
 .game__field {
     display: flex;
     justify-content: center;
-    padding: 100px 0;
+    padding: 90px 0;
 }
 
 .game__rules-btn {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 30px;
 }
 
 .rules__img {
@@ -175,5 +186,31 @@ button {
     from {
         transform: translateX(32px);
         opacity: 0;
+    }
+}
+
+@media (max-width: 1020px) {
+    body {
+        font-size: 16px;
+    }
+
+    .game__rules-btn {
+        justify-content: center;
+    }
+
+    .game__score {
+        padding: 10px 20px;
+    }
+
+    .game__logo {
+        width: 55px;
+    }
+
+    .game__panel {
+        padding: 20px;
+    }
+
+    .score-val {
+        font-size: 32px;
     }
 }

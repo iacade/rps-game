@@ -1,0 +1,25 @@
+.hide-mobile {
+    /* nothing */
+}
+
+.flex-mobile {
+    display: none;
+}
+
+.block-mobile {
+    display: none;
+}
+
+@media (max-width: 1020px) {
+    .hide-mobile {
+        display: none;
+    }
+
+    .flex-mobile {
+        display: flex;
+    }
+
+    .block-mobile {
+        display: block;
+    }
+}

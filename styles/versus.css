@@ -14,6 +14,10 @@
     transition: 400ms;
 }
 
+.versus__result-mobile {
+    min-width: 250px;
+}
+
 .versus__result-container {
     margin: 0 30px;
     transition: 400ms;
@@ -78,4 +82,35 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.versus.fade-out {
+    animation: versus-fade-out 400ms ease forwards;
+}
+
+@keyframes versus-fade-out {
+    to {
+        transform: scale(1.25);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 1020px) {
+    .versus__item {
+        margin: 0 10px;
+    }
+
+    .versus__item-picker {
+        width: 135px;
+        height: 135px;
+    }
+
+    .versus__item-picker::before {
+        width: 110px;
+        height: 110px;
+    }
+
+    .versus__item-label {
+        font-size: 14px;
+    }
 }

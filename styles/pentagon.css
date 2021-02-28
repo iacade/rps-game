@@ -15,86 +15,66 @@
     cursor: pointer;
     color: hsl(229, 25%, 31%);
     transition: 100ms;
-    box-shadow: inset 0 -3px 0 2px rgba(0, 0, 0, .3);
+    box-shadow: inset 0 -3px 0 2px rgba(0, 0, 0, .2);
+}
+
+[value=scissors] {
+    --item-color: var(--c-orange);
+}
+
+[value=paper] {
+    --item-color: var(--c-blue);
+}
+
+[value=rock] {
+    --item-color: var(--c-red);
+}
+
+[value=lizard] {
+    --item-color: var(--c-purple);
+}
+
+[value=spock] {
+    --item-color: var(--c-cyan);
+}
+
+.pentagon__item {
+    background: var(--item-color);
 }
 
 .pentagon__item[value=scissors] {
     top: -60px;
     left: calc(50% - 65px);
-    background: hsl(40, 84%, 53%);
 }
 
 .pentagon__item[value=paper] {
     top: 50px;
     left: calc(50% + 85px);
-    background: hsl(230, 89%, 65%);
 }
 
 .pentagon__item[value=rock] {
     top: calc(100% - 80px);
     left: calc(50% + 25px);
-    background: hsl(349, 70%, 56%);
 }
 
 .pentagon__item[value=lizard] {
     top: calc(100% - 80px);
     left: 0;
-    background: hsl(261, 72%, 63%);
 }
 
 .pentagon__item[value=spock] {
     top: 50px;
     left: -55px;
-    background: hsl(189, 58%, 57%);
 }
 
 .pentagon__item:focus {
     outline: none;
+    box-shadow: 0 0 15px var(--item-color);
+    color: var(--item-color);
 }
 
-.pentagon__item[value=scissors]:focus {
-    box-shadow: 0 0 15px var(--c-orange);
-    color: var(--c-orange);
-}
-
-.pentagon__item[value=paper]:focus {
-    box-shadow: 0 0 15px var(--c-blue);
-    color: var(--c-blue);
-}
-
-.pentagon__item[value=rock]:focus {
-    box-shadow: 0 0 15px var(--c-red);
-    color: var(--c-red);
-}
-
-.pentagon__item[value=lizard]:focus {
-    box-shadow: 0 0 15px var(--c-purple);
-    color: var(--c-purple);
-}
-
-.pentagon__item[value=spock]:focus {
-    box-shadow: 0 0 15px var(--c-cyan);
-    color: var(--c-cyan);
-}
-
-.pentagon__item[value=scissors]:hover:not(:disabled) {
-    color: var(--c-orange);
-}
-
-.pentagon__item[value=paper]:hover:not(:disabled) {
-    color: var(--c-blue);
-}
-
-.pentagon__item[value=rock]:hover:not(:disabled) {
-    color: var(--c-red);
-}
-
-.pentagon__item[value=lizard]:hover:not(:disabled) {
-    color: var(--c-purple);
-}
-
-.pentagon__item[value=spock]:hover:not(:disabled) {
-    color: var(--c-cyan);
+.pentagon__item:hover:not(:disabled) {
+    color: var(--item-color);
 }
 
 .pentagon__item-icon {
@@ -175,6 +155,14 @@
         hsla(189, 58%, 57%, 1%) 80%, hsla(189, 58%, 57%, 1%) 100%);
 }
 
+.pentagon__item.clone {
+    transform: scale(2.2);
+}
+
+.pentagon__item {
+    --item-scale: 2.2;
+}
+
 @keyframes pentagon-item-mask {
     from {
         transform: scale(0);
@@ -190,7 +178,7 @@
         opacity: 0;
     }
     to {
-        transform: scale(2.2);
+        transform: scale(var(--item-scale));
         opacity: 1;
     }
 }
@@ -207,5 +195,55 @@
     from {
         transform: scale(.85);
         opacity: 0;
+    }
+}
+
+@media (max-width: 1020px) {
+    .pentagon__image {
+        width: 230px;
+    }
+
+    .pentagon__item {
+        width: 90px;
+        height: 90px;
+        --item-scale: 1.5;
+    }
+
+    .pentagon__item-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .pentagon__item-icon svg {
+        transform: scale(.7);
+    }
+
+    .pentagon__item[value=scissors] {
+        top: -45px;
+        left: calc(50% - 45px);
+    }
+    
+    .pentagon__item[value=paper] {
+        top: 35px;
+        left: calc(50% + 65px);
+    }
+    
+    .pentagon__item[value=rock] {
+        top: calc(100% - 60px);
+        left: calc(50% + 25px);
+    }
+    
+    .pentagon__item[value=lizard] {
+        top: calc(100% - 60px);
+        left: 0;
+    }
+    
+    .pentagon__item[value=spock] {
+        top: 35px;
+        left: -35px;
+    }
+
+    .pentagon__item.clone {
+        transform: scale(1.5);
     }
 }
