@@ -13,11 +13,20 @@
     class State {
         constructor() {
             this.step = APP_STEPS.USER_CHOOSE;
-            this.score = +localStorage.getItem("score") || 0;
+            this.scoreValue = +localStorage.getItem("score") || 0;
+        }
+
+        get score() {
+            return this.scoreValue;
+        }
+
+        set score(value) {
+            this.scoreValue = value;
+            this.save();
         }
 
         save() {
-            localStorage.setItem("score", this.score);
+            localStorage.setItem("score", this.scoreValue);
         }
 
         next() {
