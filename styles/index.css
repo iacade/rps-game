@@ -99,7 +99,7 @@ button {
 .game__field {
     display: flex;
     justify-content: center;
-    padding: 90px 0;
+    padding: 55px 0;
 }
 
 .game__rules-btn {
