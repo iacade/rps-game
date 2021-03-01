@@ -1,4 +1,4 @@
-(() => {
+((global) => {
     const RESULT_TEXTS = {
         WIN: "YOU WIN",
         LOSE: "YOU LOSE",
@@ -87,6 +87,10 @@
     }
 
     function chooseValue(button) {
+        if (state.step !== APP_STEPS.USER_CHOOSE) {
+            return;
+        }
+
         const { left, top } = button.getBoundingClientRect();
         const clone = button.cloneNode(true);
 
@@ -181,10 +185,6 @@
     }
 
     pentagon.addEventListener("click", (event) => {
-        if (state.step !== APP_STEPS.USER_CHOOSE) {
-            return;
-        }
-
         const button = event.target.closest("button[value]");
 
         if (button) {
@@ -197,4 +197,17 @@
 
     document.querySelectorAll("[data-score]")
         .forEach(item => item.textContent = state.score);
-})();
+
+
+    global.app = {
+        choose: (value) => {
+            const button = pentagon.querySelector(`button[value="${ value }"]`);
+
+            if (button) {
+                return chooseValue(button);
+            }
+        },
+        restart: restart
+    };
+    
+})(window);

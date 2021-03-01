@@ -1,4 +1,4 @@
-(() => {
+((global) => {
     const container = document.getElementById("app") || document.body;
 
     function setModalState(modal, isEnabled = true, newTitle = "") {
@@ -21,7 +21,7 @@
             return;
         }
 
-        const modalTitle = element.dataset.modalTitle;
+        const modalTitle = modal.dataset.modalTitle;
 
         element.addEventListener("click", (event) => {
             event.stopPropagation();
@@ -47,4 +47,9 @@
 
     document.querySelectorAll("[data-toggle-modal]")
         .forEach(init);
-})();
+
+    global.modal = {
+        toggle: modal => setModalState(modal, !modal.classList.contains("opened"), modal.dataset.modalTitle)
+    };
+
+})(window);

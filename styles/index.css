@@ -105,6 +105,7 @@ button {
 .game__rules-btn {
     display: flex;
     justify-content: flex-end;
+    flex-wrap: wrap;
     padding: 0 30px;
 }
 
@@ -144,6 +145,10 @@ button {
 
 .mt-4 {
     margin-top: 20px;
+}
+
+.mr-4 {
+    margin-right: 20px;
 }
 
 /* ----------------------------------- */
@@ -226,5 +231,13 @@ button {
 
     .score-val {
         font-size: 32px;
+    }
+}
+
+@media (max-width: 460px) {
+    #start-recognition {
+        order: 2;
+        margin-right: 0;
+        margin-top: 10px;
     }
 }
