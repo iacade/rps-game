@@ -112,4 +112,8 @@
     .versus__item-label {
         font-size: 14px;
     }
+
+    .versus__result button {
+        padding: 10px 55px;
+    }
 }
