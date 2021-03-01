@@ -91,8 +91,10 @@
             return;
         }
 
-        const { left, top } = button.getBoundingClientRect();
+        let { left, top } = button.getBoundingClientRect();
         const clone = button.cloneNode(true);
+
+        top += document.documentElement.scrollTop;
 
         clone.disabled = true;
         clone.style.left = left + "px";
@@ -106,9 +108,11 @@
         versus.classList.remove("hidden");
 
         frame().then(() => {
-            const { left, top } = versusUser
+            let { left, top } = versusUser
                 .querySelector(".versus__item-picker")
                 .getBoundingClientRect();
+            top += document.documentElement.scrollTop;
+
             clone.style.left = left + "px";
             clone.style.top = top + "px";
             clone.style.transformOrigin = "top left";
