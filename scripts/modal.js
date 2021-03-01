@@ -1,17 +1,15 @@
 (() => {
     const container = document.getElementById("app") || document.body;
-    const titles = [];
 
     function setModalState(modal, isEnabled = true, newTitle = "") {
         container.classList.toggle("modal-opened", isEnabled);
         modal.classList.toggle("opened", isEnabled);
 
-        if (newTitle && isEnabled) {
-            titles.push(document.title);
-            document.title = newTitle;
+        if (isEnabled && newTitle) {
+            title.set(newTitle);
         }
-        else if (!isEnabled && titles.length) {
-            document.title = titles.pop();
+        else if (!isEnabled) {
+            title.pop();
         }
     }
     

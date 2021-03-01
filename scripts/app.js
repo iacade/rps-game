@@ -1,68 +1,15 @@
 (() => {
-    const APP_STEPS = {
-        USER_CHOOSE: 0,
-        HOUSE_CHOOSE: 1,
-        GAME_FINISH: 2
-    };
-    const GAME_RULES = {
-        "scissors": [ "paper", "lizard" ],
-        "paper": [ "rock", "spock" ],
-        "rock": [ "scissors", "lizard" ],
-        "lizard": [ "paper", "spock" ],
-        "spock": [ "scissors", "rock" ]
-    };
-    const GAME_VALUES = Object.keys(GAME_RULES);
     const RESULT_TEXTS = {
         WIN: "YOU WIN",
         LOSE: "YOU LOSE",
         TIE: "TIE"
     };
-    const HOUSE_STEP_TIMEOUT = 500;
-    const state = {
-        step: APP_STEPS.USER_CHOOSE,
-        score: 0
-    };
-    const stepsSequence = [
-        APP_STEPS.USER_CHOOSE,
-        APP_STEPS.HOUSE_CHOOSE,
-        APP_STEPS.GAME_FINISH
-    ];
+    const HOUSE_STEP_TIMEOUT = 800;
+
     const container = document.querySelector(".game__container");
     const pentagon = document.querySelector(".pentagon");
     const versus = document.querySelector(".versus");
     const [ versusUser, versusHouse ] = versus.querySelectorAll(".versus__item");
-
-    function animation(element) {
-        return new Promise(resolve => {
-            element.onanimationend = () => {
-                element.onanimationend = null;
-                resolve(element);
-            };
-        });
-    }
-
-    function animations(...elements) {
-        return Promise.all(elements.map(element => animation(element)));
-    }
-
-    function transition(element) {
-        return new Promise(resolve => {
-            element.ontransitionend = () => {
-                element.ontransitionend = null;
-                resolve(element);
-            };
-        });
-    }
-
-    function wait(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    function frame() {
-        return new Promise(resolve =>
-            requestAnimationFrame(() =>
-                requestAnimationFrame(resolve)));
-    }
 
     function cloneButton(name) {
         const button = pentagon.querySelector(`button[value="${ name }"]`);
@@ -75,28 +22,6 @@
         clone.classList.add("fade-in");
 
         return clone;
-    }
-
-    function generateValue() {
-        return GAME_VALUES[parseInt(Math.random() * GAME_VALUES.length)];
-    }
-
-    function compareValues(left, right) {
-        if (left === right) {
-            return 0;
-        }
-        else if (GAME_RULES[left].includes(right)) {
-            return -1;
-        }
-
-        return 1;
-    }
-
-    function nextStep() {
-        const index = stepsSequence.indexOf(state.step);
-        const nextIndex = index + 1 < stepsSequence.length ? index + 1 : 0;
-
-        state.step = stepsSequence[nextIndex];
     }
 
     function updateScore(addToScore) {
@@ -141,6 +66,7 @@
         versus.style.top = top + "px";
         versus.style.width = width + "px";
         versus.classList.add("fade-out");
+        title.pop();
 
         animations(pentagon, versus).then(() => {
             versus.style.position = "relative";
@@ -157,10 +83,10 @@
             pentagon.classList.remove("fade-in");
         });
 
-        nextStep();
+        state.next();
     }
 
-    function select(button) {
+    function chooseValue(button) {
         const { left, top } = button.getBoundingClientRect();
         const clone = button.cloneNode(true);
 
@@ -184,6 +110,8 @@
             clone.style.transformOrigin = "top left";
             clone.classList.add("clone");
 
+            title.prepend("Waiting for house | ");
+
             return transition(clone);
         })
         .then(() => {
@@ -199,7 +127,7 @@
         .then(() => {
             const userButton = versusUser.querySelector("button[value]");
             const userValue = userButton.value;
-            const houseValue = generateValue();
+            const houseValue = game.generate();
             const loader = versusHouse.querySelector(".loader");
             const houseButton = cloneButton(houseValue);
 
@@ -207,9 +135,9 @@
                 .appendChild(houseButton);
             loader.classList.add("hidden");
 
-            nextStep();
+            state.next();
 
-            const winner = compareValues(userValue, houseValue);
+            const winner = game.compare(userValue, houseValue);
             const resultText = winner < 0
                 ? RESULT_TEXTS.WIN
                 : winner > 0
@@ -235,6 +163,8 @@
                 winnerButton.prepend(mask);
             }
 
+            title.pop().prepend(resultText + " | ");
+
             versus.querySelectorAll("[data-result-text]")
                 .forEach(item => item.textContent = resultText);
             versus.classList.add("has-result");
@@ -247,7 +177,7 @@
             button.classList.remove("d-none");
         });
 
-        nextStep();
+        state.next();
     }
 
     pentagon.addEventListener("click", (event) => {
@@ -258,7 +188,7 @@
         const button = event.target.closest("button[value]");
 
         if (button) {
-            select(button);
+            chooseValue(button);
         }
     });
 
