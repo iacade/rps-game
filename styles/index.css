@@ -107,6 +107,8 @@ button {
     justify-content: flex-end;
     flex-wrap: wrap;
     padding: 0 30px;
+    position: relative;
+    z-index: 2;
 }
 
 .rules__img {
