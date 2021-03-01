@@ -24,7 +24,7 @@
             }
         }
     }, {
-        words: [ "rules", "close", "game" ],
+        words: [ "close", "game" ],
         action: () => {
             if (rulesModal.classList.contains("opened")) {
                 modal.toggle(rulesModal);
