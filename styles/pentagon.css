@@ -156,6 +156,10 @@
         hsla(189, 58%, 57%, 1%) 80%, hsla(189, 58%, 57%, 1%) 100%);
 }
 
+.versus.fade-out .pentagon__item-mask {
+    display: none;
+}
+
 .pentagon__item.clone {
     transform: scale(2.2);
 }
