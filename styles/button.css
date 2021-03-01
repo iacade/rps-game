@@ -6,11 +6,11 @@
     transition: 100ms;
 }
 
-.btn:hover {
+.btn:hover, .btn.active {
     background: rgba(255, 255, 255, .2);
 }
 
-.btn:focus {
+.btn:focus, .btn.active {
     outline: none;
     box-shadow: 0 0 15px 2px rgba(255, 255, 255, .5);
     background: rgba(255, 255, 255, .2);
