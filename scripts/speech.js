@@ -14,7 +14,7 @@
         words: [ "scissors", "paper", "rock", "lizard", "spock" ],
         action: (text) => app.choose(text)
     }, {
-        words: [ "play", "again", "play again", "restart", "one more time", "go" ],
+        words: [ "again", "play again", "restart", "one more time", "go" ],
         action: () => app.restart()
     }, {
         words: [ "rules", "manual", "how to play" ],
