@@ -57,6 +57,10 @@
 
     recognition.onerror = (event) => {
         console.log("%cRecognition error: " + event.error, "font-size: 10px; color: #fa5f5f");
+
+        if (event.error === "language-not-supported") {
+            button.classList.add("d-none");
+        }
     };
 
     function proccessTranscript(text) {
